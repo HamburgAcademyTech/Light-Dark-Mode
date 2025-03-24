@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light/Dark Mode Toggle</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: Arial, sans-serif;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 2em;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .toggle-button {
+            width: 100px;
+            height: 50px;
+            background-color: #ccc;
+            border-radius: 50px;
+            position: relative;
+        }
+
+        .toggle-button::before {
+            content: "";
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            border-radius: 50%;
+            transition: left 0.3s;
+        }
+
+        .dark-mode {
+            background-color: #222;
+            color: white;
+        }
+
+        .dark-mode .toggle-button {
+            background-color: #444;
+        }
+
+        .dark-mode .toggle-button::before {
+            left: 55px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="toggle-container" onclick="toggleMode()">
+        <span id="mode-text">Light</span>
+        <div class="toggle-button"></div>
+    </div>
+
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+            document.getElementById('mode-text').textContent = 
+                document.body.classList.contains('dark-mode') ? 'Dark' : 'Light';
+        }
+    </script>
+</body>
+</html>
